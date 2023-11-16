@@ -7,10 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1qccPoEaeseUZSFSqfpietS3ENgKkZBvM
 """
 
-#mounting drive
-from google.colab import drive
-drive.mount('/content/gdrive')
-
 """#Transfer Learning Model Analysis
 
 ##PreProcessing
@@ -35,15 +31,15 @@ from tqdm import tqdm
 import random
 import time
 from keras.models import Model
-from keras.layers.core import Flatten, Dense, Dropout
+from keras.layers import Flatten, Dense, Dropout
 from keras.layers import Conv2D, MaxPooling2D,Input,AveragePooling2D
 from keras.callbacks import EarlyStopping
 import matplotlib.pyplot as plt
 # %matplotlib inline
 
 #listing directories of training and testing images
-train_dir="/content/gdrive/MyDrive/Dataset/train"
-test_dir="/content/gdrive/MyDrive/Dataset/test"
+train_dir="Training"
+test_dir="Testing"
 
 #preprocessing and generating training validation and testing dataset
 from keras.preprocessing.image import ImageDataGenerator
@@ -51,10 +47,9 @@ trainDataGen=ImageDataGenerator(
     rescale=1./255, #rescale
     validation_split=0.1, #validation split
     zoom_range=0.2, #zoom to create augmented sample
-
-
 )
 testDataGen=ImageDataGenerator(rescale=1./255) #rescaling
+
 
 trainGen=trainDataGen.flow_from_directory(train_dir,
                                           target_size=(224,224), #image size
