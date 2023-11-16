@@ -14,11 +14,13 @@
 FROM docker.io/continuumio/miniconda3 AS base
 RUN apt-get update &&\
     apt-get upgrade -y && \
-    apt-get install -y libgl1-mesa-glx
+    apt-get install -y libgl1-mesa-glx && \
+    apt-get install -y gdrive
 COPY . .
 RUN conda env create --name first --file=test.yml
 RUN pip install --upgrade pip \
-    pip install matplotlib \
-    seaborn\
-    scikit-learn
-RUN pip install tensorflow opencv-python
+                pip install matplotlib \
+                seaborn\
+                scikit-learn \
+                tensorflow \
+                opencv-python
